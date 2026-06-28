@@ -1,0 +1,77 @@
+<section id="projects" class="projects-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <span class="section-tag">FEATURED PROJECTS</span>
+
+            <h2 class="projects-title">
+                Transforming Properties<br>
+                Across Toronto & GTA
+            </h2>
+
+            <p class="projects-subtitle">
+                Every project is completed with precision, premium materials,
+                and attention to detail.
+            </p>
+        </div>
+
+        {% if featured_project %}
+        <a href="{% url 'project_detail' featured_project.pk %}" class="featured-project-link">
+
+            <div class="featured-project">
+
+                <img src="{{ featured_project.image.url }}"
+                     alt="{{ featured_project.title }}">
+
+                <div class="featured-overlay">
+                    <span>{{ featured_project.get_category_display }}</span>
+
+                    <h2>{{ featured_project.title }}</h2>
+
+                    <p>{{ featured_project.short_description }}</p>
+
+                    <div class="project-link-text">
+                        View Project →
+                    </div>
+                </div>
+
+            </div>
+
+        </a>
+        {% endif %}
+
+        <div class="project-grid">
+
+            {% for project in projects %}
+
+            <a href="{% url 'project_detail' project.pk %}" class="project-card-link">
+
+                <div class="project-card">
+
+                    <img src="{{ project.image.url }}"
+                         alt="{{ project.title }}">
+
+                    <div class="project-info">
+                        <small>{{ project.get_category_display }}</small>
+
+                        <h4>{{ project.title }}</h4>
+
+                        <span>View Details →</span>
+                    </div>
+
+                </div>
+
+            </a>
+
+            {% empty %}
+
+            <p class="text-center">No projects have been added yet.</p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>

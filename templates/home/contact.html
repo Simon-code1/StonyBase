@@ -1,0 +1,74 @@
+{% load static %}
+
+<section id="contact" class="contact-section">
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-5">
+                <span class="section-tag light">CONTACT US</span>
+
+                <h2>Ready to Start Your Project?</h2>
+
+                <p>
+                    Tell us about your masonry, interlock, patio, chimney,
+                    or outdoor construction project. We’ll get back to you soon.
+                </p>
+
+                <div class="contact-info">
+                    <p><strong>Phone:</strong> +1 (437) 288-6422</p>
+                    <p><strong>Email:</strong> contact@stonybase.ca</p>
+                    <p><strong>Area:</strong> Toronto & GTA</p>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+
+                <div class="contact-card">
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                            </div>
+
+                            <div class="col-12">
+                                <input type="text" name="phone" class="form-control" placeholder="Phone Number">
+                            </div>
+
+                            <div class="col-12">
+                                <textarea name="message" rows="6" class="form-control" placeholder="Tell us about your project..." required></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn contact-btn w-100">
+                                    Send Message
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
