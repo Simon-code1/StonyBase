@@ -82,9 +82,32 @@
                      alt="{{ project.title }}"
                      class="project-main-image">
             </div>
-
         </div>
     </section>
+    {% if project.gallery_images.all %}
+<section class="project-gallery-section">
+    <div class="container">
+
+        <h2 class="gallery-title">Project Gallery</h2>
+
+        <div class="project-gallery-grid">
+
+            {% for photo in project.gallery_images.all %}
+            <a href="{{ photo.image.url }}" target="_blank" class="gallery-item">
+                <img src="{{ photo.image.url }}"
+                     alt="{{ photo.caption|default:project.title }}">
+
+                {% if photo.caption %}
+                <span>{{ photo.caption }}</span>
+                {% endif %}
+            </a>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+{% endif %}
 
     <section class="project-detail-body">
         <div class="container">

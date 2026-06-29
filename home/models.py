@@ -26,6 +26,21 @@ class Project(models.Model):
     def __str__(self):
         return self.title
     
+class ProjectImage(models.Model):
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        related_name="gallery_images"
+    )
+    image = models.ImageField(upload_to="projects/gallery/")
+    caption = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["created_at"]
+
+    def __str__(self):
+        return f"Image for {self.project.title}"
 
 class ContactMessage(models.Model):
     name = models.CharField(max_length=150)
